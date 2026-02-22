@@ -80,3 +80,50 @@ let jobData = [
         status: "NOT APPLIED"
     }
 ];
+
+let currentTab = "All";
+
+function Jobs() {
+    const container = document.getElementById("job_container");
+    container.innerHTML = "";
+
+    let jobsToShow = jobData;
+    if (currentTab === "Interview") {
+        jobsToShow = jobData.filter(job => job.status === "Interview");
+    } else if (currentTab === "Rejected") {
+        jobsToShow = jobData.filter(job => job.status === "Rejected");
+    }
+
+    if (jobsToShow.length === 0) {
+        container.innerHTML = `
+            <div class="state">
+                <div class="icon"><img src="./img/jobs.png"></img></div>
+                <h3>No jobs available</h3>
+                <p>Check back soon for new job opportunities</p>
+            </div>
+        `;
+        return;
+    }
+ jobsToShow.forEach(job => {
+        const isInterview = job.status === "Interview" ? "active" : "";
+        const isRejected = job.status === "Rejected" ? "active" : "";
+
+        const card = document.createElement("div");
+        card.className = "job_card";
+        card.innerHTML = `
+            <button class="deletebtn" onclick="deleteJob(${job.id})" title="Delete Job"><img id="dustbin_img" src="./img/dustbin.png"></img></button>
+            <div class="companyname">${job.companyName}</div>
+            <div class="jobtitle">${job.position}</div>
+            <div class="jobdetails">
+                ${job.location} • ${job.type} • ${job.salary}
+            </div>
+            <div class="jobstatus">${job.status}</div>
+            <div class="jobdescription">${job.description}</div>
+            <div class="cardactions">
+                <button class="action_btn btn_interview ${isInterview}" onclick="updateJobStatus(${job.id}, 'Interview')">INTERVIEW</button>
+                <button class="action_btn btn_rejected ${isRejected}" onclick="updateJobStatus(${job.id}, 'Rejected')">REJECTED</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
