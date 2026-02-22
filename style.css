@@ -182,3 +182,26 @@ h1 {
   background-color: #059669;
   color: white;
 }
+.state {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: #94a3b8;
+}
+
+.state h3 {
+  color: #1a365d;
+  margin-bottom: 5px;
+}
+
+.state p {
+  color: #64748b;
+  font-size: 14px;
+}
