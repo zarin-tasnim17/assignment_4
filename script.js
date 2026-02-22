@@ -139,3 +139,43 @@ function switchTab(tabName) {
     });
     renderApp();
 }
+function DashboardCount() {
+    const total = jobData.length;
+    const interviewCount = jobData.filter(job => job.status === "Interview").length;
+    const rejectedCount = jobData.filter(job => job.status === "Rejected").length;
+
+    document.getElementById("totalcount").innerText = total;
+    document.getElementById("interviewcount").innerText = interviewCount;
+    document.getElementById("rejectedcount").innerText = rejectedCount;
+
+    let sectionCount = 0;
+    if (currentTab === "All") sectionCount = total;
+    else if (currentTab === "Interview") sectionCount = interviewCount;
+    else if (currentTab === "Rejected") sectionCount = rejectedCount;
+
+    document.getElementById("job_count").innerText = sectionCount;
+}
+
+function updateJobStatus(jobId, newStatus) {
+    const jobIndex = jobData.findIndex(job => job.id === jobId);
+    
+    if (jobData[jobIndex].status === newStatus) {
+        jobData[jobIndex].status = "NOT APPLIED";
+    } else {
+        jobData[jobIndex].status = newStatus;
+    }
+    renderApp();
+}
+
+function deleteJob(jobId) {
+    jobData = jobData.filter(job => job.id !== jobId);
+    renderApp();
+}
+
+function renderApp() {
+    DashboardCount();
+    Jobs();
+}
+
+
+renderApp();
