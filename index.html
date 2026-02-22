@@ -28,12 +28,12 @@
         <h2>Available Jobs</h2>
         <div class="jobcount"><span id="job_count">0</span> jobs</div>
     </div>
-    <div class="tab">
-        <button class="btn active">All</button>
-        <button class="btn"  >Interview</button>
-        <button class="btn" >Rejected</button>
+ <div class="tab">
+        <button class="btn active" onclick="switchTab('All')">All</button>
+        <button class="btn" onclick="switchTab('Interview')" >Interview</button>
+        <button class="btn" onclick="switchTab('Rejected')">Rejected</button>
     </div>
-    
+
     <div id="job_container" class="job_list">
         </div>
 </div>

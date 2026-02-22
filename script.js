@@ -127,3 +127,15 @@ function Jobs() {
         container.appendChild(card);
     });
 }
+function switchTab(tabName) {
+    currentTab = tabName;
+    const tabs = document.querySelectorAll(".btn");
+    tabs.forEach(tab => {
+        if (tab.innerText === tabName) {
+            tab.classList.add("active");
+        } else {
+            tab.classList.remove("active");
+        }
+    });
+    renderApp();
+}
